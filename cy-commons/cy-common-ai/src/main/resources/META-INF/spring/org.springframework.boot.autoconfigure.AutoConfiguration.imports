@@ -1,0 +1,4 @@
+com.cy.ai.config.AiAutoConfiguration
+com.cy.ai.config.AiProviderRefreshAutoConfiguration
+com.cy.ai.config.AiCatalogAutoConfiguration
+com.cy.ai.config.ModelHealthAutoConfiguration

@@ -1,0 +1,3 @@
+com.cy.auth.config.AuthAutoConfiguration
+com.cy.auth.config.AuthServletAutoConfiguration
+com.cy.auth.config.AuthReactiveAutoConfiguration

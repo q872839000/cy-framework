@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cy.commons</groupId>
+        <artifactId>cy-commons</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>cy-common-log</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <description>
+        cy-common-log 日志记录组件
+        支持接口日志（零侵入）、审计日志、系统日志（侵入式）
+        通过MQ发布日志，支持分表存储和分布式链路追踪
+    </description>
+
+    <dependencies>
+        <!-- cy-common-core（UserContext、AuthUser等） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- cy-common-mq（MqTemplate、@MqListener） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-mq</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- cy-common-orm（持久化模块，必需依赖 - 提供 MyBatis-Flex、Spring Transaction） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-orm</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Web（Filter、ApiLogAspect 等 Servlet 专属组件，可选依赖） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Data Redis（StringRedisTemplate，必需依赖） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- Spring Boot AOP（切面能力） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- Spring Boot 自动配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <!-- fastjson2（JSON序列化） -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- Reactor Core（可选，WebFlux 环境下 Mono/Flux 响应式完成时机处理） -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Micrometer（可选，启用后自动注册日志指标） -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Annotation Processor -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

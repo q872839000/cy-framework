@@ -1,0 +1,2 @@
+com.cy.filestore.spi.impl.LocalFileStorageStrategyProvider
+com.cy.filestore.spi.impl.MinioFileStorageStrategyProvider

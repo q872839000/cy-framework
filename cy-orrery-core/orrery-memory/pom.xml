@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cy.orrery</groupId>
+        <artifactId>cy-orrery-core</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>orrery-memory</artifactId>
+    <packaging>jar</packaging>
+    <description>Orrery记忆组件 - 分层记忆（L0上下文/L1情景/L2长期语义）+ 维度下放的用户画像，按需装配、提示词可覆盖</description>
+
+    <dependencies>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- cy-common-core（CYException：错误码与 i18n 消息解析） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-core</artifactId>
+        </dependency>
+
+        <!-- Spring Boot AutoConfigure -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!-- SLF4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- 配置元数据生成（cy.orrery.memory.* 的 IDE 补全与文档） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- JDBC 存储实现（optional，存在 DataSource 时自动装配 JdbcMemoryStore） -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- cy-common-cache（Redis 存储实现依赖，optional） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-cache</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- cy-common-ai（Embedding 桥接，optional；无此依赖时检索降级关键词） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-ai</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- cy-common-milvus（Milvus 向量索引，optional；无此依赖时索引降级内存/无） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-milvus</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

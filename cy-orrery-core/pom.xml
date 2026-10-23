@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cy</groupId>
+        <artifactId>cy-framework</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.cy.orrery</groupId>
+    <artifactId>cy-orrery-core</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <description>Orrery平台核心库 - 协议模型、接入SDK、技能运行时、记忆组件</description>
+
+    <properties>
+        <cy.commons.version>1.0.0</cy.commons.version>
+    </properties>
+
+    <modules>
+        <module>cy-orrery-bom</module>
+        <module>orrery-protocol</module>
+        <module>orrery-skill-runtime</module>
+        <module>orrery-memory</module>
+        <module>orrery-agent-runtime</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.cy.commons</groupId>
+                <artifactId>cy-commons-bom</artifactId>
+                <version>${cy.commons.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

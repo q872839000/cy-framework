@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cy.orrery</groupId>
+        <artifactId>cy-orrery-core</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>orrery-agent-runtime</artifactId>
+    <packaging>jar</packaging>
+    <name>Orrery Agent Runtime</name>
+    <description>Orrery Agent 运行时模块 - 领域无关的 ReAct 循环引擎与阶段链工作流引擎</description>
+
+    <dependencies>
+        <!-- cy-common-core（CYException 消息解析） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-core</artifactId>
+        </dependency>
+
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <!-- Spring Boot AutoConfigure（@AutoConfiguration + @ConditionalOnMissingBean） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <!-- jackson（工具参数 / 结果序列化） -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- SLF4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- 配置元数据生成（cy.orrery.agent-runtime.* 的 IDE 补全与文档） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- orrery-protocol（AgentEvent 线协议桥；生态线协议标准，Agent 必备） -->
+        <dependency>
+            <groupId>com.cy.orrery</groupId>
+            <artifactId>orrery-protocol</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- orrery-memory（跨运行记忆桥 + 公共上下文子系统；上下文守望/折叠已委托其实现，必需依赖） -->
+        <dependency>
+            <groupId>com.cy.orrery</groupId>
+            <artifactId>orrery-memory</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- nacos-client（identity 包身份发布 + assets 包提示词资产的客户端底座，必需依赖） -->
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+        </dependency>
+
+        <!-- cy-common-ai（生产 LLM 适配器 AiFacadeLlmInvoker，选配桥；宿主手动构造，
+             自动配置不注册——optional：不使用的宿主不被迫引入 webflux/reactor/openai 栈） -->
+        <dependency>
+            <groupId>com.cy.commons</groupId>
+            <artifactId>cy-common-ai</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- redisson（Redis 审批门 / 检查点存储；gate/checkpoint=redis 时装配。
+             optional + 类级 @ConditionalOnClass(name=) 防护：不用 Redis 的宿主不引入 netty 栈 -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>${redisson.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- micrometer（观测埋点 MicrometerRuntimeObserver；可选） -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- test -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 自动装配上下文测试（ApplicationContextRunner） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

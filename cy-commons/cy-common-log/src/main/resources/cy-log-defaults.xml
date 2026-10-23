@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  cy-common-log 提供的默认日志格式片段。
+  在各服务的 logback-spring.xml 中通过 <include resource="cy-log-defaults.xml"/> 引入，
+  或者直接在 application.yml 中配置 logging.pattern.console。
+-->
+<included>
+    <!-- 统一控制台日志格式：包含 traceId 和 spanId -->
+    <property name="CY_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{traceId:--}] [%X{spanId:--}] %logger{36} - %msg%n"/>
+
+    <!-- access log 文件 appender：调用链路日志管道分隔格式 -->
+    <appender name="ACCESS_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH:-logs}/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH:-logs}/access.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>200MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <!-- access log 直接输出原始管道分隔内容，不需要额外的格式模板 -->
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- log.access logger：仅写入 access.log 文件，不传播到 root logger -->
+    <logger name="log.access" level="INFO" additivity="false">
+        <appender-ref ref="ACCESS_LOG_FILE"/>
+    </logger>
+</included>

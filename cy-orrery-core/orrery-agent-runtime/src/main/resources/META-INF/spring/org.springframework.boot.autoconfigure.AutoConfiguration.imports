@@ -1,0 +1,3 @@
+com.cy.orrery.agent.runtime.config.OrreryAgentRuntimeAutoConfiguration
+com.cy.orrery.agent.runtime.identity.IdentityAutoConfiguration
+com.cy.orrery.agent.runtime.assets.AssetsAutoConfiguration

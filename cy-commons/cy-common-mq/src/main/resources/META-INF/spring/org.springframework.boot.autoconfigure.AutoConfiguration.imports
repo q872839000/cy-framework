@@ -1,0 +1,3 @@
+com.cy.mq.config.MqAutoConfiguration
+com.cy.mq.config.MqMetricsAutoConfiguration
+com.cy.mq.config.MqHealthAutoConfiguration

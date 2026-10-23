@@ -1,0 +1,5 @@
+com.cy.web.config.WebServletAutoConfiguration
+com.cy.web.config.WebReactiveAutoConfiguration
+com.cy.web.config.WebExceptionAutoConfiguration
+com.cy.web.config.WebReactiveExceptionAutoConfiguration
+com.cy.web.tracing.TracingAutoConfiguration
